@@ -41,11 +41,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameManager.Instance.RestartLevel();
+        GameManager.Instance.GameOver();
     }
 
     private void OnTriggerExit(Collider other)
     {
         UiManager.Instance.Score++;
+        SoundController.Instance.PlayScoreAdd();
     }
 }

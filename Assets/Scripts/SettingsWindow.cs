@@ -28,6 +28,11 @@ public class SettingsWindow : MonoSingleton<SettingsWindow>
         _diffRightArrowButton.onClick.AddListener(IncreaseDifficulty);
         _backButton.onClick.AddListener(GoBack);
 
+        _soundSlider.onValueChanged.AddListener((volume) =>
+        {
+            SoundController.Instance.Volume = volume;
+        });
+
         gameObject.SetActive(false);
     }
 

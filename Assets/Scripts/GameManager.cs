@@ -14,6 +14,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     private float _timer;
 
+    private void Start()
+    {
+        SoundController.Instance.PlayMusic(true);
+    }
+
     private void Update()
     {
         _timer -= Time.deltaTime;
@@ -39,8 +44,15 @@ public class GameManager : MonoSingleton<GameManager>
         wall.gameObject.SetActive(true);
     }
 
-    public void RestartLevel()
+    public void GameOver()
     {
+        SoundController.Instance.PlayMusic(false);
+        SoundController.Instance.PlayFail();
         SceneManager.LoadScene(0);
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }
