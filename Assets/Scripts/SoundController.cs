@@ -59,9 +59,4 @@ public class SoundController : MonoSingleton<SoundController>
         base.Awake();
         DontDestroyOnLoad(gameObject);
     }
-
-    private void Start()
-    {
-        Volume = SettingsWindow.Instance.SoundVolume;
-    }
 }

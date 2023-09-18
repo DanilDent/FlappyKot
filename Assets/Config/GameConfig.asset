@@ -18,17 +18,17 @@ MonoBehaviour:
     _movementSpeed: 3
     _minWallsSpawnFrequency: 3
     _maxWallsSpawnFrequency: 5
-    _minEntrySize: 3
+    _minEntrySize: 4
     _maxEntrySize: 8
   - _name: Normal
-    _movementSpeed: 9
+    _movementSpeed: 4.5
     _minWallsSpawnFrequency: 3
-    _maxWallsSpawnFrequency: 5
+    _maxWallsSpawnFrequency: 8
     _minEntrySize: 3
-    _maxEntrySize: 8
+    _maxEntrySize: 7
   - _name: Hard
-    _movementSpeed: 14
-    _minWallsSpawnFrequency: 3
-    _maxWallsSpawnFrequency: 5
-    _minEntrySize: 3
-    _maxEntrySize: 8
+    _movementSpeed: 7
+    _minWallsSpawnFrequency: 2
+    _maxWallsSpawnFrequency: 9.5
+    _minEntrySize: 2
+    _maxEntrySize: 6

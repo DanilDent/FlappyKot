@@ -10,6 +10,8 @@ public class SettingsWindow : MonoSingleton<SettingsWindow>
     [SerializeField] private Slider _soundSlider;
     [SerializeField] private Button _backButton;
 
+    private int _saveExists;
+
     public int Difficulty
     {
         get => AppController.Instance.CurrentDiffIndex;
@@ -19,10 +21,32 @@ public class SettingsWindow : MonoSingleton<SettingsWindow>
     public float SoundVolume
     {
         get => _soundSlider.value;
+        set
+        {
+            _soundSlider.value = value;
+            SoundController.Instance.Volume = value;
+        }
     }
 
     private void Start()
     {
+        _saveExists = PlayerPrefs.GetInt("SaveExists");
+
+        if (_saveExists == 0)
+        {
+            SoundVolume = 0.5f;
+            Difficulty = 0;
+
+            _saveExists = 1;
+            PlayerPrefs.SetInt("SaveExists", _saveExists);
+        }
+        else
+        {
+            AppController.Instance.CurrentDiffIndex = PlayerPrefs.GetInt("DiffIndex");
+            Difficulty = AppController.Instance.CurrentDiffIndex;
+            SoundVolume = PlayerPrefs.GetFloat("SoundVolume");
+        }
+
         UpdateChooseDiffControls();
         _diffLeftArrowButton.onClick.AddListener(DecreaseDifficulty);
         _diffRightArrowButton.onClick.AddListener(IncreaseDifficulty);
@@ -61,6 +85,12 @@ public class SettingsWindow : MonoSingleton<SettingsWindow>
     {
         MainMenuWindow.Instance.gameObject.SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        PlayerPrefs.SetInt("DiffIndex", Difficulty);
+        PlayerPrefs.SetFloat("SoundVolume", SoundVolume);
     }
 
     protected override void OnDestroy()

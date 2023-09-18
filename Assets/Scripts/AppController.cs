@@ -22,6 +22,7 @@ public class AppController : MonoSingleton<AppController>
     private void Start()
     {
         Application.targetFrameRate = 60;
+        Screen.orientation = ScreenOrientation.Landscape;
     }
 
 }
